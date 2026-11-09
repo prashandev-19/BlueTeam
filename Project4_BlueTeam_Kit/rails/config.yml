@@ -1,0 +1,11 @@
+# NeMo Guardrails config. Two input/output "rails" written in Colang (rails.co).
+# The checks themselves are plain Python/regex in guardrails.py (no extra LLM calls).
+colang_version: "1.0"
+rails:
+  input:
+    flows:
+      - check input
+  output:
+    flows:
+      - redact jwt
+      - redact internal ids

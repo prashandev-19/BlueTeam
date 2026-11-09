@@ -1,0 +1,5 @@
+.env
+__pycache__/
+keys/*private*
+alerts.log
+security.log

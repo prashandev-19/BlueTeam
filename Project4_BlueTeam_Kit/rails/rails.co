@@ -1,0 +1,16 @@
+define bot refuse
+  "Request blocked by guardrail."
+
+# INPUT rail: runs on everything that goes INTO the model (user text + retrieved documents)
+define flow check input
+  $ok = execute check_input
+  if not $ok
+    bot refuse
+    stop
+
+# OUTPUT rails: run on everything the model SAYS before the user sees it
+define flow redact jwt
+  $bot_message = execute redact_jwt
+
+define flow redact internal ids
+  $bot_message = execute redact_internal_ids
